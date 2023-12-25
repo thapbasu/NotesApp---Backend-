@@ -6,7 +6,13 @@ const { userRouter } = require('./routes/user.routes');
 const { noteRouter } = require('./routes/note.routes');
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Allow any origin during development
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials (cookies, HTTP authentication)
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/user', userRouter);
 app.use('/note', noteRouter);
